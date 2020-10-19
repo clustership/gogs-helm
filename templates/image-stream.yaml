@@ -1,0 +1,17 @@
+kind: ImageStream
+apiVersion: v1
+metadata:
+  labels:
+    app: {{ include "gogs.fullname" . }}
+  name: {{ include "gogs.fullname" . }}
+spec:
+  tags:
+  - name: "{{ .Values.image.tag | default .Chart.AppVersion }}"
+    from:
+      kind: DockerImage
+      name: quay.io/xymox/gogs:{{ .Values.image.tag | default .Chart.AppVersion }}
+    importPolicy: {}
+    annotations:
+      description: The Gogs git server docker image
+      tags: gogs,go,golang
+      version: "{{ .Values.image.tag | default .Chart.AppVersion }}"
