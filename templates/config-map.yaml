@@ -11,7 +11,7 @@ data:
 
     [database]
     DB_TYPE  = postgres
-    HOST     = {{ include "gogs.fullname" . }}-postgresql:5432
+    HOST     = {{ include "postgresql.hostname" . }}:{{ include "postgresql.port" . }}
     NAME     = {{ include "postgresql.database" . | quote }}
     USER     = {{ include "postgresql.username" . | quote }}
     PASSWORD = {{ include "postgresql.password" . | quote }}

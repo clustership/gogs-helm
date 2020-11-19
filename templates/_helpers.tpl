@@ -86,6 +86,32 @@ Return Gogs volume storageClass
 Postgresql references
 */}}
 {{/*
+Return PostgreSQL hostname
+*/}}
+{{- define "postgresql.hostname" -}}
+{{- if .Values.global.postgresql.hostname }}
+    {{- .Values.global.postgresql.hostname -}}
+{{- else if .Values.postgresqlHostname -}}
+    {{- .Values.postgresqlHostname -}}
+{{- else -}}
+    {{ include "gogs.fullname" . }}-postgresql
+{{- end -}}
+{{- end -}}
+
+{{/*
+Return PostgreSQL port
+*/}}
+{{- define "postgresql.port" -}}
+{{- if .Values.global.postgresql.port }}
+    {{- .Values.global.postgresql.port -}}
+{{- else if .Values.postgresqlPort -}}
+    {{- .Values.postgresqlPort -}}
+{{- else -}}
+    5432
+{{- end -}}
+{{- end -}}
+
+{{/*
 Return PostgreSQL password
 */}}
 {{- define "postgresql.password" -}}
